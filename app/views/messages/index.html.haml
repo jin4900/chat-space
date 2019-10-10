@@ -1,0 +1,31 @@
+.flash-box
+  .wrappr
+    = render 'shared/side_bar'
+    .main
+      .main__header
+        .main__header__left__box
+          .main__header__left__box__group
+            sample
+          .main__header__left__box__member
+            member
+        .main__header__edit-button
+          Edit
+      .main__messages
+        .main__messages__message
+          .main__messages__message__info
+            .main__messages__message__info__user
+              jin
+            .main__messages__message__info__date
+              2019/10/8
+          .main__messages__message__text
+            abc
+      .main__form
+        .main__form__new__message
+          .main__form__new__message__input-box
+
+            .main__form__new__message__input-box__text
+            .main__form__new__message__input-box__image
+            =link_to "" do
+              = fa_icon 'image',class: "fa-2x btn"
+          .main__form__new__message__submit
+            Send

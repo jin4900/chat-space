@@ -1,0 +1,20 @@
+%p#notice= notice
+%h1 Articles
+%table
+  %thead
+    %tr
+      %th Title
+      %th Author
+      %th Text
+      %th{:colspan => "3"}
+  %tbody
+    - @articles.each do |article|
+      %tr
+        %td= article.title
+        %td= article.author
+        %td= article.text
+        %td= link_to 'Show', article
+        %td= link_to 'Edit', edit_article_path(article)
+        %td= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+= link_to 'New Article', new_article_path
