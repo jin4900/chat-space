@@ -11,21 +11,14 @@
         .main__header__edit-button
           Edit
       .main__messages
-        .main__messages__message
-          .main__messages__message__info
-            .main__messages__message__info__user
-              jin
-            .main__messages__message__info__date
-              2019/10/8
-          .main__messages__message__text
-            abc
+        = render @messages
       .main__form
-        .main__form__new__message
-          .main__form__new__message__input-box
-
-            .main__form__new__message__input-box__text
-            .main__form__new__message__input-box__image
-            =link_to "" do
-              = fa_icon 'image',class: "fa-2x btn"
-          .main__form__new__message__submit
-            Send
+        = form_for [@group, @message] do |f|
+          .main__form__new__message
+            .main__form__new__message__input-box
+              = f.text_field :content, class: 'main__form__new__message__input-box__text', placeholder: 'type a message'
+              = f.label :image, class: 'main__form__new__message__input-box__image' do
+                = fa_icon 'picture-o', class: 'icon'
+                = f.file_field :image, class: 'hidden'
+            = f.submit 'Send', class: 'main__form__new__message__submit'
+            
