@@ -38,13 +38,11 @@ $(function(){
       var html = buildHTML(data);
       $('.main__messages').append(html);
       $('#message_content').val(''); 
-      // function scrollBottom(){
         var target = $('.messages').last();
         var position = $('.messages').scrollTop();
         $('.messages').animate({
           scrollTop: position
         }, 300, 'swing');
-      // }
       $('.main__form__new__message__submit').prop('disabled', false);
     })
     .fail(function(data){
