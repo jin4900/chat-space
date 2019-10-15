@@ -34,10 +34,9 @@ $(function(){
       contentType: false
     })
     .done(function(data){
-      console.log(data)
       var html = buildHTML(data);
       $('.main__messages').append(html);
-      $('#message_content').val(''); 
+      $('#message_content').reset(); 
         var target = $('.messages').last();
         var position = $('.messages').scrollTop();
         $('.messages').animate({
