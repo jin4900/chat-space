@@ -2,22 +2,23 @@ $(function(){
   function buildHTML(message) {
     var content = message.content ? `${ message.content }` : "";
     var img = message.image ? `<img src= ${ message.image }>` : "";
-    var html = `<div class="message" data-id="${message.id}">
-                  <div class="message__detail">
-                    <p class="message__detail__current-user-name">
-                      ${message.user_name}
-                    </p>
-                    <p class="message__detail__date">
-                      ${message.date}
-                    </p>
-                  </div>
-                  <p class="message_body">
-                    <div>
-                    ${content}
+    var html = `<div class="main__messages" data-id="${message.id}">
+                  <div class="main__messages__message">
+                    <div class="main__messages__message__info">
+                      <div class="main__messages__message__info__user">
+                        ${message.user_name}
+                      </div>
+                      <div class="main__messages__message__info__date">
+                        ${message.date}
+                      </div>
                     </div>
-                    ${img}
-                  </p>
-                </div>`
+                    <div class="main__messages__message__text">
+                      <p class="main__messages__message__text__content">
+                        ${content}
+                      </p>
+                      ${img}
+                  </div>
+               </div>`
   return html;
   }
   $('#new_message').on('submit', function(e){
@@ -33,22 +34,21 @@ $(function(){
       contentType: false
     })
     .done(function(data){
+      console.log(data)
       var html = buildHTML(data);
-      $('.messages').append(html);
-      $('#message_content').val(''); //input内のメッセージを消しています。
-      function scrollBottom(){
-        var target = $('.message').last();
-        var position = target.offset().top + $('.messages').scrollTop();
+      $('.main__messages').append(html);
+      $('#message_content').val(''); 
+      // function scrollBottom(){
+        var target = $('.messages').last();
+        var position = $('.messages').scrollTop();
         $('.messages').animate({
           scrollTop: position
         }, 300, 'swing');
-      }
+      // }
+      $('.main__form__new__message__submit').prop('disabled', false);
     })
     .fail(function(data){
       alert('エラーが発生したためメッセージは送信できませんでした。');
-    })
-    .always(function(data){
-      $('.submit-btn').prop('disabled', false);//ここで解除している
     })
   })
 })
