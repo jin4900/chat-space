@@ -46,8 +46,8 @@ $(function() {
   });
   $(function () {
     $(document).on("click", '.user_search_add', function () {
-        var name = $(this).attr("data-user-name");
-        var user_id = $(this).attr("data-user-id");
+        var name = $(this).date("user-name");
+        var user_id = $(this).date("user-id");
         $(this).parent().remove();
         appendMembers(name, user_id);
     });
