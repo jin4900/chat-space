@@ -5,11 +5,11 @@
       .main__header
         .main__header__left__box
           .main__header__left__box__group
-            sample
+            = @group.name
           .main__header__left__box__member
-            member
+            = current_user.name
         .main__header__edit-button
-          Edit
+          = link_to "Edit", edit_group_path(@group)
       .main__messages
         = render @messages
       .main__form
