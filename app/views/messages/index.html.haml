@@ -9,7 +9,7 @@
           .main__header__left__box__member
             member
         .main__header__edit-button
-          Edit
+          = link_to "Edit", edit_group_path(@group)
       .main__messages
         = render @messages
       .main__form
