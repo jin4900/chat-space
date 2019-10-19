@@ -1,4 +1,4 @@
-$(function(){
+$(document).on('turbolinks:load', function() {
   function buildHTML(message) {
     var content = message.content ? `${ message.content }` : "";
     var img = message.image ? `<img src= ${ message.image }>` : "";
@@ -36,10 +36,7 @@ $(function(){
       $('.main__messages').append(html);
       $('#new_message')[0].reset(); 
         var target = $('.messages').last();
-        var position = $('.messages').scrollTop();
-        $('.messages').animate({
-          scrollTop: position
-        }, 300, 'swing');
+        $('.main__messages').animate({scrollTop: $('.main__messages')[0].scrollHeight}, 'fast');
       $('.main__form__new__message__submit').prop('disabled', false);
     })
     .fail(function(data){
@@ -47,28 +44,27 @@ $(function(){
     })
   })
 
-  // var reloadMessages = function() {
-  //   if (window.location.href.match(/\/groups\/\d+\/messages/)){
-    
-  //     last_message_id = $('.message:last').data("message-id");
-  //     $.ajax({
-  //       url: "api/messages",
-  //       type: 'GET',
-  //       dataType: 'json',
-  //       data: {id: last_message_id}
-  //     })
-  //     .done(function(messages) {
-  //       var insertHTML = '';
-  //       messages.forEach(function(message){
-  //         insertHTML = buildHTML(message);
-  //         $('.messages').append(insertHTML);
-  //       })
-  //       $('.main__messages').animate({scrollTop: $('.main__messages')[0].scrollHeight}, 'fast');
-  //     })
-  //     .fail(function() {
-  //       alert('自動更新に失敗しました');
-  //     });
-  //   }
-  // };
-  // setInterval(reloadMessages, 5000);
+   var reloadMessages = function() {
+     if (window.location.href.match(/\/groups\/\d+\/messages/)){
+       last_message_id = $('.main__messages__message:last').data("id");
+       $.ajax({
+         url: "api/messages",
+         type: 'GET',
+         dataType: 'json',
+         data: {id: last_message_id}
+       })
+       .done(function(messages) {
+         var insertHTML = '';
+         messages.forEach(function(message){
+           insertHTML = buildHTML(message);
+           $('.main__messages').append(insertHTML);
+           $('.main__messages').animate({scrollTop: $('.main__messages')[0].scrollHeight}, 'fast');
+         })
+       })
+       .fail(function() {
+         alert('自動更新に失敗しました');
+       });
+     }
+   };
+   setInterval(reloadMessages, 5000);
 });
