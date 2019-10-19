@@ -7,9 +7,10 @@
           .main__header__left__box__group
             = @group.name
           .main__header__left__box__member
-            = current_user.name
+            - @group.users.each do |name|
+              = name.name
         .main__header__edit-button
-          = link_to "Edit", edit_group_path(@group)
+          = link_to "Edit", edit_group_path(@group),data: {"turbolinks" => false}
       .main__messages
         = render @messages
       .main__form
