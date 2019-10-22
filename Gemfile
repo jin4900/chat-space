@@ -54,12 +54,12 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 group :development, :test do
-  gem 'devise'
+  
 end
 
 gem 'haml-rails'
 gem 'erb2haml'
-
+gem 'devise'
 gem "font-awesome-rails" 
 
 gem 'carrierwave'
