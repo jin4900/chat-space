@@ -18,3 +18,4 @@
 
 # Ignore uploaded files in development
  /public/uploads/
+config/secrets.yml
