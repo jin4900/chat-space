@@ -1,6 +1,6 @@
 $(document).on('turbolinks:load', function() {
   function buildHTML(message) {
-    var content = message.content ? `${ message.content }` : "";
+    // var content = message.content ? `${ message.content }` : "";
     var img = message.image ? `<img src= ${ message.image }>` : "";
     var html = `<div class="main__messages__message"data-id="${message.id}">
                     <div class="main__messages__message__info">
@@ -13,7 +13,7 @@ $(document).on('turbolinks:load', function() {
                     </div>
                     <div class="main__messages__message__text">
                       <p class="main__messages__message__text__content">
-                        ${content}
+                        ${message.content}
                       </p>
                       ${img}
                 </div>`
@@ -32,6 +32,7 @@ $(document).on('turbolinks:load', function() {
       contentType: false
     })
     .done(function(data){
+    console.table(data)
       var html = buildHTML(data);
       $('.main__messages').append(html);
       $('#new_message')[0].reset(); 
