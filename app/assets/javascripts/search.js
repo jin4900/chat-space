@@ -30,9 +30,8 @@ $(function() {
         data: { keyword: input },
         dataType: 'json'
       })
-
         .done(function (users) {
-          $("#user_search_result").empty();
+          $("#user-search-result").empty();
           if (users.length !== 0) {
             users.forEach(function (user) {
               appendUsers(user);
